@@ -1,1 +1,11 @@
 - In eventloop/timer.js, what will be the order of execution? Briefly explain the order of execution w.r.t the event loop phases.
+The order of execution is closely related to how the event loop works. Node.js' event loop allows JavaScript to continue running while performing asynchronous operations,
+and to process the results when the asynchronous operations are complete. 
+The setTimeout function is scheduled to perform a callback at some point in the future, even if the delay is set to 0.
+Order of execution:
+foo
+baz
+foo
+baz
+2 : bar
+1 : bar

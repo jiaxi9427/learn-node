@@ -1,2 +1,7 @@
 - Explain the order of execution in terms of the event loop for eventloop/immediate.js.
 - Will the order of execution change if timeout is changed to 0? Why or why not?
+
+If the delay of setTimeout is changed to 0, its callback function will theoretically be added to the event queue as early as possible, 
+but since it is still declared in the callback of the file read, the actual execution time will be after the current macro task (file read fetch call) has completed. 
+This means that setImmediate is still executed after the setTimeout callback, because setImmediate is designed to be executed immediately after the polling phase of the current event loop, 
+and setTimeout, even if the delay is 0, may be executed later due to other activity in the event loop.
